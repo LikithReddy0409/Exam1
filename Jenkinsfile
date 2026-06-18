@@ -1,14 +1,14 @@
 pipeline{
-	agent any
-	
+	agnet any
+
 	tools{
 		maven 'Maven'
 	}
-	
+
 	stages{
 		stage('Checkout'){
 			steps{
-				git branch: 'main', url: 'https://github.com/LikithReddy0409/Exam1.git'
+				git branch:'main',url:'https://github.com/LikithReddy0409/Exam1.git'
 			}
 		}
 		stage('Build'){
@@ -23,16 +23,16 @@ pipeline{
 		}
 		stage('Run Application'){
 			steps{
-				sh 'java -jar target/MyMaven-1.0-SNAPSHOT.jar'
+				sh 'mvn exec:java -Dexec.mainClass="com.example.App"'
 			}
 		}
 	}
 	post{
 		success{
-			echo 'Build and deployment successfull'
+			echo 'Done'
 		}
 		failure{
-			echo 'Build Failed'
+			echo 'fail'
 		}
 	}
 }
